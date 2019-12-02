@@ -1,0 +1,30 @@
+﻿@model NeroMerch.Models.Order.ThankYouVm
+@{
+    ViewBag.Title = "ThankYou";
+}
+
+<h2>Vielen Dank für Ihre Bestellung!</h2>
+
+<h3>Ihre Bestellnummer lautet: @Model.OrderId</h3>
+<h4>    
+    Sie können Ihre Rechung <a href="/Order/Receipt?oid=@Model.OrderId">unter diesem Link </a> abrufen.    
+    Alternativ können Sie Ihre Rechung<a href="/Order/ReceiptPdf?oid=@Model.OrderId"> hier auch als PDF</a> ansehen.    
+    Wir schicken Ihnen die Rechnung allerdings auch per E-Mail zu!
+</h4>
+@if (Model.IsPaid)
+{
+    <h3>Ihre Lizenzschlüssel sind im Kundenbereich bereits für Sie abrufbar!</h3>
+    <h3><a href="/Customer/MyOrders">Klicken Sie hier um zum Kundenbereich zu gelangen.</a></h3>
+}
+else
+{
+    <h3>Sobald Sie Ihre Bestellung bezahlen, können Sie Ihre Lizenzschlüssel im Kundenbereich abrufen</h3>
+    <h3>Hier sind unsere Zahlungsdetails:</h3>
+    <p>NeroMerch GmbH</p>
+    <p>Computerstrasse 1/23</p>
+    <p>1120 Wien</p>
+    <p>IBAN: AT12 3456789 123456789</p>
+}
+<p>
+@Html.ActionLink("weitere Produkte kaufen", "Overview", "Product")
+</p>

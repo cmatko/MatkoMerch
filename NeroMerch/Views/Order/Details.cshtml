@@ -1,0 +1,66 @@
+﻿@model NeroMerch.Models.Order.DetailsVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<h4><a href="/Customer/MyOrders">Zurück zur Bestellübersicht</a></h4>
+
+<div class="row">    
+    <div class="col-lg-4">        
+        <h2 class="text-center">Bestellung # @Model.OrderId</h2>        
+        <h3 class="text-center">vom @Model.OrderDate.ToShortDateString()</h3>        
+        <div class="text-right">                   
+            <h4>Preis Netto: € @Model.OrderNetTotal.ToString("0.00")</h4>            
+            <h4>Mwst (20%): € @((Model.OrderTotal - Model.OrderNetTotal).ToString("0.00"))</h4>            
+            <h3>Gesamtpreis: € @Model.OrderTotal.ToString("0.00")</h3>        
+         </div>        
+        <br />        
+        <h3>Rechnungsadresse: </h3>        
+        <h4>@Model.BillingTitle  @Model.BillingFirstName @Model.BillingLastName</h4>        
+        <p>@Model.BillingStreet, @Model.BillingZipCode @Model.BillingCity</p>    
+    </div>    
+    <div class="col-lg-8">        
+        <form method="post" action="/Order/ActivateKey">            
+            <input type="hidden" value="@Model.OrderId" name="oid" />            
+            <table class="table">                
+                <thead>                    
+                    <tr>                        
+                        <th>Produkt</th>                       
+                        <th>Preis</th>                        
+                        <th>Lizenzschlüssel</th>                       
+                        <th></th>                    
+                    </tr>                
+                </thead>                
+                <tbody>                    
+                    @foreach (var key in Model.OrderedKeys)
+                     {
+                        <tr>                           
+                            <td>@key.Manufacturer &nbsp;- &nbsp; @key.Product</td>                            
+                            <td>€ @key.Price.ToString("0.00")</td>                            
+                            @if (Model.IsPaid)
+                             {
+                        
+                                <td>@key.Key</td> 
+                                if (key.UsedKey)
+                                {
+                                    @*<td>✅</td>*@
+                                    <td>YES</td>
+                                }
+
+                                else
+                                { 
+                                    <td><button class="btn btn-sm btn-info" name="keyId" type="submit" value="@key.Id">Aktivieren</button></td>
+                                }
+                             }                                           
+                        </tr>
+                     }                
+                    </tbody>           
+            </table>        
+        </form>    
+    </div>
+</div>
+<p>   
+    @Html.ActionLink("ProduktListe", "Overview", "Product")
+</p>

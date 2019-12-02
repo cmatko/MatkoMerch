@@ -1,0 +1,28 @@
+﻿@{ 
+    ViewBag.Title = "Receipt";
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";}
+<div class="row text-center">        NeroMerch GmbH<br />    
+        Computerstrasse 1/23, 1120 Wien<br />    Tel.: +1 123 456 78<br />    
+        E-mail/www: NeroMerch@gmx.at www.NeroMerch.at<br />    
+        UID: ATU12345678
+</div>
+<div class="row">    
+        <h2>Ihre Rechnung #@Model.OrderId vom @Model.OrderDate</h2>    
+        <p class="text-left">        
+            @Model.CustomerTitle @Model.CustomerFirstname @Model.CustomerLastname<br />      
+            @Model.CustomerStreet <br />
+            @Model.CustomerZip<br />
+            @Model.CustomerCity    
+        </p>
+</div>
+<div class="row text-right"> 
+    @foreach (var p in Model.Products)
+    {
+        <p>@p.Amount x @p.Name, € @p.LinePrice</p>
+    }
+</div>
+<div class="row text-right">   
+    € @Model.TotalNet<br />    
+    € @Model.VatAmount (@Model.VatPercent)<br />    
+    <b>@Model.TotalGross</b>
+</div>

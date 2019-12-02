@@ -1,0 +1,40 @@
+﻿@model NeroMerch.Models.MyOrdersVm
+@{
+    ViewBag.Title = "MyOrders";
+}
+
+<h2>Meine Bestellungen</h2>
+
+<audio controls autoplay hidden>
+    <source src="/Audio/it-is-your-destiny.mp3" type="audio/mp3">
+    <source src="star wars cantina.mp3" type="audio/mp3">
+
+</audio>
+
+<div class="row">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-1">Bestell Nr.</th>
+                <th class="col-md-1">Bestelldatum</th>
+                <th class="col-md-1 text-right">Gesamtpreis</th>
+                <th class="col-md-1"></th>
+                <th class="col-md-8">Bezahlstatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderedAt.ToShortDateString()</td>
+                    <td class="text-right">€ @order.Total.ToString("0.00")</td>
+                    <td><a href="/Order/Details?oid=@order.Id">Details</a></td>
+                    <td>@(order.IsPaid ? "YES" : "NO") </td>
+                    @*<td>@(order.IsPaid ? "✅" : "⚠️") </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,34 @@
+﻿@model NeroMerch.Models.Order.EnterCardVm
+@{
+    ViewBag.Title = "EnterCard";
+}
+<h2>EnterCard</h2>
+<form method="post" action="/Order/CardData">
+    <input type="hidden" value="@Model.OrderId" name="@nameof(Model.OrderId)" />
+    Name: <input type="text" value="@Model.Name" name="@nameof(Model.Name)" />
+    <br />
+    Kartennummer: <input type="text" value="@Model.CardNumber" name="@nameof(Model.CardNumber)" />
+    <br />
+    CVV: <input type="text" value="@Model.CVV" name="@nameof(Model.CVV)" />
+    <br />
+    Gülitg bis: Monat <select name="@nameof(Model.Month)">
+        @for (int i = 1; i <= 12; i++)
+        {
+            <option value="@i">@i.ToString("00")</option>
+        }
+    </select>
+    Jahr: <select name="@nameof(Model.Year)">
+        @for (int i = DateTime.Now.Year; i <= DateTime.Now.Year + 10; i++)
+        {
+            <option value="@i">@i</option>
+        }
+    </select>
+    <br />
+    <button class="btn btn-success">Bezahlen</button> @*<a href="/Order/ThankYou?OrderId=@Model.OrderId&IsPaid=false">Ich möchte doch erst später zahlen</a>*@
+    @*Wie bekommen wir die Daten hier aus der URL heraus?*@
+</form>
+<form method="post" action="/Order/ThankYou">
+    <input type="hidden" name="OrderId" value="@Model.OrderId" />
+    <input type="hidden" name="IsPaid" value="false" />
+    <button class="btn btn-warning" type="submit">Später zahlen</button>
+</form>

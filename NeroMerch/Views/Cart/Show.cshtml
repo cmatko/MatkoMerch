@@ -1,0 +1,58 @@
+﻿@model NeroMerch.Models.ShowVm
+
+@{
+    ViewBag.Title = "Show";
+}
+<audio controls autoplay hidden>
+    <source src="/Audio/the-force-is-with-you-young-skywalker-but-you-are-not-a-jedi-yet.mp3" type="audio/mp3">
+    <source src="star wars cantina.mp3" type="audio/mp3">
+
+</audio>
+
+@if (Model.Products.Count == 0)
+{
+    <div class="text-center">
+        <br /><br />
+        <h2 class="text-warning">Warenkorb is leer</h2>
+        <br />
+        <h2><a class="text-success" href="/Product/Overview">Unsere Produkte finden Sie hier!</a></h2>
+    </div>
+}
+else
+{
+    <h2>Ihr Warenkorb</h2>
+    <br />
+    foreach (var p in Model.Products)
+    {
+        <form method="post" action="/Cart/ChangeQty">
+            <input type="hidden" name="prodId" value="@p.Id" />
+            <input type="hidden" name="qty" value="1" />
+            <p>
+                <img height="40" width="40" src="@p.ImagePath" />
+                <a href="/Product/Detail?prodId=@p.Id">
+                    @p.CompanyName @p.Name
+                </a>
+                € @p.UnitPrice.ToString("0.00")
+
+                <button name="info" value="false" class="btn btn-sm btn-danger">
+                    <span class="glyphicon glyphicon-minus-sign"></span>
+                </button>
+
+                @p.Quantity
+
+                <button name="info" value="true" class="btn btn-sm btn-success">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </button>
+
+                € @p.LinePrice.ToString("0.00")
+                <button name="info" value="" class="btn btn-sm btn-danger">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                </button>
+            </p>
+        </form>
+    }
+
+    <br />
+    <h3>€ @Model.TotalPrice.ToString("0.00")</h3>
+    <a class="btn btn-success" href="/Order/New">Warenkorb bestellen!</a>
+}

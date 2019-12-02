@@ -1,0 +1,20 @@
+﻿@model NeroMerch.Models.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+}
+<audio controls autoplay hidden>
+    <source src="/Audio/it-is-your-destiny.mp3" type="audio/mp3">
+    <source src="star wars cantina.mp3" type="audio/mp3">
+
+</audio>
+<h2>Login</h2>
+
+
+<form method="post">
+    <p>E-Mail: <input type="email" name="@nameof(Model.Email)" /></p>
+    <p>Passwort: <input type="password" name="@nameof(Model.Password)" /></p>
+    <p><button type="submit">Einloggen</button></p>
+</form>
+
+<h4><a href="/Account/ForgotPassword">Ich habe mein Passwort vergessen</a></h4>

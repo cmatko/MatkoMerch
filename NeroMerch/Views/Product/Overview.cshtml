@@ -1,0 +1,197 @@
+﻿@model NeroMerch.Models.OverviewVm
+
+@{
+    ViewBag.Title = "Overview";
+}
+<style>
+    /*body {
+        background-image: url('/Pictures/leave.gif');
+        background-repeat: repeat-y;
+        background-size: 20.3%;
+        background-position: top left;
+        background-attachment: scroll;
+    }*/
+    body {
+        background: url('/Pictures/leave.gif') left top repeat-y,
+        /*url('/Pictures/Look_For.gif') center top no-repeat,*/
+        url('/Pictures/palpa2.gif') right top repeat-y;
+        background-size: 20.3%;
+    }
+</style>
+<body>
+    <Yoda_start>
+
+
+        <img src="/Pictures/Look_For.gif" style="position:center;" alt="Look_For" width="1150" height="200"><br />
+
+        <h2 class="text-center">
+
+            Das sind die Sachen die Ihr sucht!!!
+        </h2>
+        <audio controls autoplay loop hidden>
+            <source src="/Audio/star wars cantina.mp3" type="audio/mp3">
+            <source src="star wars cantina.mp3" type="audio/mp3">
+
+        </audio>
+        <p>
+            <a class="btn btn-info" href="/Product/Create">Create</a>
+        </p>
+        <div class="form-group">
+            <form>
+                <select class="btn-btn warning" style="height:30px" name="catId" onchange="this.form.submit()">
+                    <option @(Model.SelectedCategory == -1 ? "selected" : "")
+                            value="-1">
+                        Kategorie Auswahl
+                    </option>
+
+                    @foreach (var cat in Model.Categories)
+                    {
+                        <option @(Model.SelectedCategory == cat.Key ? "selected" : "")
+                                value="@cat.Key">
+                            @cat.Value
+                        </option>
+                    }
+                </select>
+
+
+                <select class="btn-btn warning" style="height:30px" name="manId" onchange="this.form.submit()">
+                    <option @(Model.SelectedManufacture == -1 ? "selected" : "")
+                            value="-1">
+                        Hersteller Auswahl
+                    </option>
+
+                    @foreach (var man in Model.Manufactures)
+                    {
+                        <option @(Model.SelectedManufacture == man.Key ? "selected" : "")
+                                value="@man.Key">
+                            @man.Value
+                        </option>
+                    }
+                </select>
+                <input style="height:30px" type="text" name="searchText" value="@Model.SearchText" />
+                <button class="btn btn-primary" style="height:30px">Suche</button>
+                <a class="btn btn-danger" style="height:30px" href="/Product/Overview">Filter zurücksetzen</a>
+            </form>
+        </div>
+        <div class="form-horizontal">
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @foreach (var p in Model.Products)
+                    {
+                        <form method="post" action="/Cart/Add">
+                            <input type="hidden" name="prodId" value="@p.Id" />
+                            <input type="hidden" name="qty" value="1" />
+                            <table style="width:100%">
+
+                                <tr>
+                                    <td>
+                                        <a href="/Product/Detail?prodId=@p.Id"><img style="height:100px" src="@p.ImagePath" height="80" width="80"></a>
+                                    </td>
+                                    <td>
+                                        Preis: €@Html.DisplayFor(modelItem => p.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => p.ProductName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => p.Description)
+                                    </td>
+                                    <td>
+                                        Hersteller: @Html.DisplayFor(modelItem => p.ManufacturerName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => p.CategoryName)
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-info" href="/Product/Detail?prodId=@p.Id">Details</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-danger" href="/Product/Delete?prodId=@p.Id">Delete</a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success" style="width:120px;" type="submit">In den Warenkorb</button>
+                                    </td>
+                                </tr>
+                              
+
+                            </table>
+                        </form>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </Yoda_start>
+
+
+    @*<table class="table">
+            <tr>
+                <th>
+                    Bild
+                </th>
+                <th>
+                        Preis
+                </th>
+                <th>
+                        Name
+                </th>
+                <th>
+                     Beschreibung
+                </th>
+                <th>
+                      Kategorie
+
+                </th>
+                <th>
+                        Hersteller
+
+                </th>
+            </tr>
+
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td>
+                                <img style="height:100px" src="@Html.DisplayFor(modelItem => item.ImagePath)" alt="@Html.DisplayFor(modelItem => item.ImagePath)" />
+                            </td>
+                            <td>
+                                €@Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ManufacturerName)
+                            </td>
+
+                            <td>
+
+                                <a class="btn btn-primary" href="/Product/Details?Id">Details</a>
+                                <a class="btn btn-success" style="width:120px;" href="/Cart/Show">zum Warenkorb</a>
+
+
+                                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                                <div class="btn btn-warning">@Html.ActionLink("Details", "Details", new { id = item.Id })</div>
+
+
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+
+                        </tr>
+
+
+                     }
+
+        </table>*@
+
+</body>

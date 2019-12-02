@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a654eac2b5c84f008af98ad84dc2029e" Name="Diagram1">
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.BillingAddress" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Category" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Customer" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.GiftCert" Width="1.5" PointX="9.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.LicenseKey" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Manufacturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Order" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.OrderLine" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Product" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Rating" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Role" Width="1.5" PointX="9.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.Voucher" Width="1.5" PointX="10.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.OrderContent" Width="1.5" PointX="11.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IN31_NeroMerch_WebshopModel.ProductInfo" Width="1.5" PointX="11.75" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__BillingAd__Order__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__Product__Categor__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__Order__CustomerI__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__Rating__Customer__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK_OrderLine_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__Product__Manufac__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__OrderLine__Order__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__OrderLine__Produ__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="IN31_NeroMerch_WebshopModel.FK__Rating__ProductI__6C190EBB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

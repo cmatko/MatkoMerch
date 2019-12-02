@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="font-size:large">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Produkte", "Overview", "Product")</li>                    
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Impressum", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("AGB", "About", "Home")</li>
+                        <li>@Html.ActionLink("Bestellung", "MyOrders", "Customer")</li>
+                        <li style="position:absolute; left:80%">@Html.ActionLink("Warenkorb", "Show", "Cart")</li>
+                        <li style="position:absolute; left:85%"><a href="/Customer/Logout">Logout</a></li>                       
+                    }
+                    else
+                    {
+                        <li style="position:absolute; left:80%;"><a href="/Customer/Login">Login</a></li>
+                        <li style="position:absolute; left:85%;"><a href="/Customer/Register">Registrieren</a></li>
+                    }
+                </ul>                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

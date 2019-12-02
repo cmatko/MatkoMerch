@@ -1,0 +1,28 @@
+﻿@model NeroMerch.Models.RegisterVM
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>registration</h2>
+<audio controls autoplay hidden>
+    <source src="/Audio/we-would-be-honored-if-you-would-join-us.mp3" type="audio/mp3">
+    <source src="star wars cantina.mp3" type="audio/mp3">
+
+</audio>
+<form method="post">
+    <p>Email: <input type="email" name="@nameof(Model.Email)" /></p>
+
+    <p>Passwort: <input type="password" name="@nameof(Model.Passwort)" /></p>
+    <p>Passwort Wiederholung: <input type="password" name="@nameof(Model.Passwort_bestätigen)" /></p>
+    <p>Anrede: <input name="@nameof(Model.Title)" /></p>
+    <p>Vorname: <input type="text" name="@nameof(Model.FirstName)" /></p>
+    <p>Nachname: <input type="text" name="@nameof(Model.LastName)" /></p>
+    <p>Straße: <input type="text" name="@nameof(Model.Street)" /></p>
+    <p>PLZ: <input type="text" name="@nameof(Model.Zip)" /></p>
+    <p>Ort: <input type="text" name="@nameof(Model.City)" /></p>
+    <p>
+        <input type="checkbox" value="true" name="@nameof(Model.AcceptedTerms)" />
+        Ich habe die AGBs gelesen und akzeptiere diese.
+    </p>
+    <p><button type="submit">Registrieren</button></p>
+</form>
